@@ -15,10 +15,10 @@ if (!cached) {
     promise: null,
   };
 }
-console.log("ts");
+
 export const connectToDatabase = async () => {
   if (cached.conn) return cached.conn;
-  console.log("testtt");
+
   if (!MONGODB_URL) throw new Error("Missing MONGODB_URL");
 
   cached.promise =

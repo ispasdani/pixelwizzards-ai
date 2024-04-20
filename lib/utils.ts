@@ -125,7 +125,7 @@ export const download = (url: string, filename: string) => {
       document.body.appendChild(a);
       a.click();
     })
-    .catch((error) => console.log({ error }));
+    .catch((error) => console.error({ error }));
 };
 
 // DEEP MERGE OBJECTS
