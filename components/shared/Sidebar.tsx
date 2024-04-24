@@ -5,7 +5,6 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { Button } from "@/components/ui/button";
 
 const Sidebar = () => {
@@ -18,8 +17,8 @@ const Sidebar = () => {
           <Image
             src="/assets/images/logo-text.svg"
             alt="logo"
-            height={48}
             width={180}
+            height={28}
           />
         </Link>
 
@@ -38,10 +37,10 @@ const Sidebar = () => {
                         : "text-gray-700"
                     }`}
                   >
-                    <Link href={link.label} className="sidebar-link">
+                    <Link className="sidebar-link" href={link.route}>
                       <Image
                         src={link.icon}
-                        alt="nav logo"
+                        alt="logo"
                         width={24}
                         height={24}
                         className={`${isActive && "brightness-200"}`}
@@ -66,10 +65,10 @@ const Sidebar = () => {
                         : "text-gray-700"
                     }`}
                   >
-                    <Link href={link.label} className="sidebar-link">
+                    <Link className="sidebar-link" href={link.route}>
                       <Image
                         src={link.icon}
-                        alt="nav logo"
+                        alt="logo"
                         width={24}
                         height={24}
                         className={`${isActive && "brightness-200"}`}
@@ -79,6 +78,7 @@ const Sidebar = () => {
                   </li>
                 );
               })}
+
               <li className="flex-center cursor-pointer gap-2 p-4">
                 <UserButton afterSignOutUrl="/" showName />
               </li>
