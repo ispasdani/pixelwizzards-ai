@@ -36,6 +36,7 @@ export async function checkoutCredits(transaction: {
       },
     ],
     metadata: {
+      planId: transaction.planId,
       plan: plan.name,
       credits: plan.credits,
       buyerId: transaction.buyerId,
@@ -63,6 +64,7 @@ export async function createTransaction(transaction: {
     // Create a new transaction with a buyerId
     const newTransaction = await Transaction.create({
       ...transaction,
+      planId: transaction.planId,
       credits: plan.credits,
       amount: plan.price,
       buyer: transaction.buyerId,

@@ -10,6 +10,11 @@ const TransactionSchema = new Schema({
     required: true,
     unique: true,
   },
+  planId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   amount: {
     type: Number,
     required: true,
