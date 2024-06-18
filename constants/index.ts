@@ -3,58 +3,72 @@ export const navLinks = [
     label: "Home",
     route: "/",
     icon: "/assets/icons/home.svg",
+    iconWhite: "/assets/icons/homeWhite.svg",
   },
   {
     label: "Image Restore",
     route: "/transformations/add/restore",
-    icon: "/assets/icons/image.svg",
+    icon: "/assets/icons/imageRestore.svg",
+    iconWhite: "/assets/icons/imageRestoreWhite.svg",
   },
   {
     label: "Generative Fill",
     route: "/transformations/add/fill",
-    icon: "/assets/icons/stars.svg",
+    icon: "/assets/icons/generativeFill.svg",
+    iconWhite: "/assets/icons/generativeFillWhite.svg",
   },
   {
     label: "Object Remove",
     route: "/transformations/add/remove",
-    icon: "/assets/icons/scan.svg",
+    icon: "/assets/icons/objectRemove.svg",
+    iconWhite: "/assets/icons/objectRemoveWhite.svg",
   },
   {
     label: "Object Recolor",
     route: "/transformations/add/recolor",
-    icon: "/assets/icons/filter.svg",
+    icon: "/assets/icons/objectColor.svg",
+    iconWhite: "/assets/icons/objectColorWhite.svg",
+  },
+  {
+    label: "Object Replace",
+    route: "/transformations/add/replace",
+    icon: "/assets/icons/objectReplace.svg",
+    iconWhite: "/assets/icons/objectReplaceWhite.svg",
   },
   {
     label: "Background Remove",
     route: "/transformations/add/removeBackground",
-    icon: "/assets/icons/camera.svg",
+    icon: "/assets/icons/backgroundRemove.svg",
+    iconWhite: "/assets/icons/backgroundRemoveWhite.svg",
   },
   {
     label: "Profile",
     route: "/profile",
     icon: "/assets/icons/profile.svg",
+    iconWhite: "/assets/icons/profileWhite.svg",
   },
   {
     label: "Buy Credits",
     route: "/credits",
-    icon: "/assets/icons/bag.svg",
+    icon: "/assets/icons/buyCredits.svg",
+    iconWhite: "/assets/icons/buyCreditsWhite.svg",
   },
 ];
 
 export const plans = [
   {
     _id: 1,
-    name: "Free",
+    name: "Pay as you go",
     icon: "/assets/icons/free-plan.svg",
-    price: 0,
-    credits: 20,
+    price: 1.99,
+    credits: 1,
     inclusions: [
       {
-        label: "20 Free Credits",
+        label: "1 Credit",
         isIncluded: true,
       },
       {
-        label: "Basic Access to Services",
+        label: "Access to all Services",
         isIncluded: true,
       },
       {
@@ -69,17 +83,17 @@ export const plans = [
   },
   {
     _id: 2,
-    name: "Pro Package",
+    name: "Base User",
     icon: "/assets/icons/free-plan.svg",
-    price: 40,
-    credits: 120,
+    price: 9.99,
+    credits: 10,
     inclusions: [
       {
-        label: "120 Credits",
+        label: "10 Credits",
         isIncluded: true,
       },
       {
-        label: "Full Access to Services",
+        label: "Access to all Services",
         isIncluded: true,
       },
       {
@@ -94,17 +108,17 @@ export const plans = [
   },
   {
     _id: 3,
-    name: "Premium Package",
+    name: "Pro User",
     icon: "/assets/icons/free-plan.svg",
-    price: 199,
-    credits: 2000,
+    price: 49.99,
+    credits: 70,
     inclusions: [
       {
-        label: "2000 Credits",
+        label: "70 Credits",
         isIncluded: true,
       },
       {
-        label: "Full Access to Services",
+        label: "Access to all Services",
         isIncluded: true,
       },
       {
@@ -132,14 +146,14 @@ export const transformationTypes = {
     title: "Background Remove",
     subTitle: "Removes the background of the image using AI",
     config: { removeBackground: true },
-    icon: "camera.svg",
+    icon: "backgroundRemove.svg",
   },
   fill: {
     type: "fill",
     title: "Generative Fill",
     subTitle: "Enhance an image's dimensions using AI outpainting",
     config: { fillBackground: true },
-    icon: "stars.svg",
+    icon: "generativeFill.svg",
   },
   remove: {
     type: "remove",
@@ -148,7 +162,7 @@ export const transformationTypes = {
     config: {
       remove: { prompt: "", removeShadow: true, multiple: true },
     },
-    icon: "scan.svg",
+    icon: "objectRemove.svg",
   },
   recolor: {
     type: "recolor",
@@ -157,7 +171,16 @@ export const transformationTypes = {
     config: {
       recolor: { prompt: "", to: "", multiple: true },
     },
-    icon: "filter.svg",
+    icon: "objectColor.svg",
+  },
+  replace: {
+    type: "replace",
+    title: "Object Replace",
+    subTitle: "Identify and replace objects from the image",
+    config: {
+      recolor: { prompt: "", to: "", multiple: true },
+    },
+    icon: "objectReplace.svg",
   },
 };
 

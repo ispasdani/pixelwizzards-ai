@@ -17,7 +17,7 @@ const Sidebar = () => {
           <Image
             src="/assets/images/logo-text.svg"
             alt="logo"
-            width={180}
+            width={200}
             height={28}
           />
         </Link>
@@ -25,7 +25,7 @@ const Sidebar = () => {
         <nav className="sidebar-nav">
           <SignedIn>
             <ul className="sidebar-nav_elements">
-              {navLinks.slice(0, 6).map((link) => {
+              {navLinks.slice(0, 7).map((link) => {
                 const isActive = link.route === pathname;
 
                 return (
@@ -38,13 +38,22 @@ const Sidebar = () => {
                     }`}
                   >
                     <Link className="sidebar-link" href={link.route}>
-                      <Image
-                        src={link.icon}
-                        alt="logo"
-                        width={24}
-                        height={24}
-                        className={`${isActive && "brightness-200"}`}
-                      />
+                      {isActive ? (
+                        <Image
+                          src={link.iconWhite}
+                          alt="logo"
+                          width={24}
+                          height={24}
+                        />
+                      ) : (
+                        <Image
+                          src={link.icon}
+                          alt="logo"
+                          width={24}
+                          height={24}
+                        />
+                      )}
+
                       {link.label}
                     </Link>
                   </li>
@@ -53,7 +62,7 @@ const Sidebar = () => {
             </ul>
 
             <ul className="sidebar-nav_elements">
-              {navLinks.slice(6).map((link) => {
+              {navLinks.slice(7).map((link) => {
                 const isActive = link.route === pathname;
 
                 return (

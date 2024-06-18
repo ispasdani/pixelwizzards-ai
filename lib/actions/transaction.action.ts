@@ -6,28 +6,38 @@ import { handleError } from "../utils";
 import { connectToDatabase } from "../database/mongoose";
 import Transaction from "../database/models/transaction.model";
 import { updateCredits } from "./user.actions";
+import { getPlanById } from "./plans.actions";
 
-export async function checkoutCredits(transaction: CheckoutTransactionParams) {
+export async function checkoutCredits(transaction: {
+  planId: string;
+  buyerId: string;
+}) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-  const amount = Number(transaction.amount) * 100;
+  // Fetch the plan details using planId
+  const plan = await getPlanById(transaction.planId);
+  if (!plan) {
+    throw new Error("Plan not found");
+  }
+
+  const amount = plan.price * 100;
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         price_data: {
-          currency: "usd",
+          currency: "eur",
           unit_amount: amount,
           product_data: {
-            name: transaction.plan,
+            name: plan.name,
           },
         },
         quantity: 1,
       },
     ],
     metadata: {
-      plan: transaction.plan,
-      credits: transaction.credits,
+      plan: plan.name,
+      credits: plan.credits,
       buyerId: transaction.buyerId,
     },
     mode: "payment",
@@ -38,17 +48,27 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
   redirect(session.url!);
 }
 
-export async function createTransaction(transaction: CreateTransactionParams) {
+export async function createTransaction(transaction: {
+  planId: string;
+  buyerId: string;
+}) {
   try {
     await connectToDatabase();
+
+    const plan = await getPlanById(transaction.planId);
+    if (!plan) {
+      throw new Error("Plan not found");
+    }
 
     // Create a new transaction with a buyerId
     const newTransaction = await Transaction.create({
       ...transaction,
+      credits: plan.credits,
+      amount: plan.price,
       buyer: transaction.buyerId,
     });
 
-    await updateCredits(transaction.buyerId, transaction.credits);
+    await updateCredits(transaction.buyerId, plan.credits);
 
     return JSON.parse(JSON.stringify(newTransaction));
   } catch (error) {

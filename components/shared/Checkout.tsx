@@ -8,17 +8,7 @@ import { checkoutCredits } from "@/lib/actions/transaction.action";
 
 import { Button } from "../ui/button";
 
-const Checkout = ({
-  plan,
-  amount,
-  credits,
-  buyerId,
-}: {
-  plan: string;
-  amount: number;
-  credits: number;
-  buyerId: string;
-}) => {
+const Checkout = ({ planId, buyerId }: { planId: string; buyerId: string }) => {
   const { toast } = useToast();
 
   useEffect(() => {
@@ -26,7 +16,6 @@ const Checkout = ({
   }, []);
 
   useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       toast({
@@ -49,9 +38,7 @@ const Checkout = ({
 
   const onCheckout = async () => {
     const transaction = {
-      plan,
-      amount,
-      credits,
+      planId,
       buyerId,
     };
 

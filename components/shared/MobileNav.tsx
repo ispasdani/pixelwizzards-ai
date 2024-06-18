@@ -61,13 +61,24 @@ const MobileNav = () => {
                           href={link.label}
                           className="sidebar-link cursor-pointer"
                         >
-                          <Image
-                            src={link.icon}
-                            alt="nav logo"
-                            width={24}
-                            height={24}
-                            className={`${isActive && "brightness-200"}`}
-                          />
+                          {isActive ? (
+                            <Image
+                              src={link.iconWhite}
+                              alt="nav logo"
+                              width={24}
+                              height={24}
+                              className={`${isActive && "brightness-200"}`}
+                            />
+                          ) : (
+                            <Image
+                              src={link.icon}
+                              alt="nav logo"
+                              width={24}
+                              height={24}
+                              className={`${isActive && "brightness-200"}`}
+                            />
+                          )}
+
                           {link.label}
                         </Link>
                       </li>

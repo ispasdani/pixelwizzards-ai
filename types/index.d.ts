@@ -73,9 +73,7 @@ declare type Transformations = {
 
 // ====== TRANSACTION PARAMS
 declare type CheckoutTransactionParams = {
-  plan: string;
-  credits: number;
-  amount: number;
+  planId: string;
   buyerId: string;
 };
 
@@ -93,6 +91,7 @@ declare type TransformationTypeKey =
   | "fill"
   | "remove"
   | "recolor"
+  | "replace"
   | "removeBackground";
 
 // ====== URL QUERY PARAMS

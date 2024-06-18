@@ -98,6 +98,10 @@
     @apply bg-purple-gradient bg-cover bg-clip-text text-transparent;
   }
 
+  .svg-to-white path {
+    stroke: white;
+  }
+
   /* ===== ALIGNMENTS */
   .flex-center {
     @apply flex justify-center items-center;
@@ -316,7 +320,7 @@
   }
 
   .sidebar-logo {
-    @apply flex items-center gap-2 md:py-2;
+    @apply flex items-center gap-2 md:py-2 mb-5;
   }
 
   .sidebar-nav {
@@ -332,7 +336,7 @@
   }
 
   .sidebar-link {
-    @apply p-16-semibold flex size-full gap-4 p-4;
+    @apply p-16-semibold flex justify-start items-center text-center size-full gap-4 p-4;
   }
 
   /* TransformationForm Component */

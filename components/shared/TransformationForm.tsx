@@ -41,11 +41,12 @@ import { useRouter } from "next/navigation";
 import { InsufficientCreditsModal } from "./InsufficientCreditsModal";
 
 export const formSchema = z.object({
-  title: z.string(),
+  title: z.string().default(""),
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
-  prompt: z.string().optional(),
-  publicId: z.string(),
+  prompt: z.string().optional().default(""),
+  to: z.string().optional().default(""),
+  publicId: z.string().default(""),
 });
 
 const TransformationForm = ({
@@ -66,16 +67,14 @@ const TransformationForm = ({
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const initialValues =
-    data && action === "Update"
-      ? {
-          title: data?.title,
-          aspectRatio: data?.aspectRatio,
-          color: data?.color,
-          prompt: data?.prompt,
-          publicId: data?.publicId,
-        }
-      : defaultValues;
+  const initialValues = {
+    title: data?.title || "",
+    aspectRatio: data?.aspectRatio || "",
+    color: data?.color || "",
+    prompt: data?.prompt || "",
+    to: data?.to || "",
+    publicId: data?.publicId || "",
+  };
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -107,6 +106,7 @@ const TransformationForm = ({
         aspectRatio: values.aspectRatio,
         prompt: values.prompt,
         color: values.color,
+        to: values.to,
       };
 
       if (action === "Add") {
@@ -294,6 +294,52 @@ const TransformationForm = ({
                 )}
               />
             )}
+          </div>
+        )}
+
+        {type === "replace" && (
+          <div className="prompt-field">
+            <CustomField
+              control={form.control}
+              name="prompt"
+              formLabel="Object to replace"
+              className="w-full"
+              render={({ field }) => (
+                <Input
+                  value={field.value}
+                  className="input-field"
+                  onChange={(e) =>
+                    onInputChangeHandler(
+                      "prompt",
+                      e.target.value,
+                      type,
+                      field.onChange
+                    )
+                  }
+                />
+              )}
+            />
+
+            <CustomField
+              control={form.control}
+              name="to"
+              formLabel="Replace with"
+              className="w-full"
+              render={({ field }) => (
+                <Input
+                  value={field.value}
+                  className="input-field"
+                  onChange={(e) =>
+                    onInputChangeHandler(
+                      "to",
+                      e.target.value,
+                      "replace",
+                      field.onChange
+                    )
+                  }
+                />
+              )}
+            />
           </div>
         )}
 
