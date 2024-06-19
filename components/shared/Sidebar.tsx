@@ -12,14 +12,13 @@ const Sidebar = () => {
 
   return (
     <aside className="sidebar">
-      <div className="flex size-full flex-col gap-4">
-        <Link href="/" className="sidebar-logo">
-          <Image
-            src="/assets/images/logo-text.svg"
-            alt="logo"
-            width={200}
-            height={28}
-          />
+      <div className="flex size-full flex-col gap-1">
+        <Link
+          href="/"
+          className="sidebar-logo text-2xl text-dark-600 font-bold flex-center"
+          prefetch={false}
+        >
+          pixelWizard.AI
         </Link>
 
         <nav className="sidebar-nav">
@@ -75,13 +74,22 @@ const Sidebar = () => {
                     }`}
                   >
                     <Link className="sidebar-link" href={link.route}>
-                      <Image
-                        src={link.icon}
-                        alt="logo"
-                        width={24}
-                        height={24}
-                        className={`${isActive && "brightness-200"}`}
-                      />
+                      {isActive ? (
+                        <Image
+                          src={link.iconWhite}
+                          alt="logo"
+                          width={24}
+                          height={24}
+                        />
+                      ) : (
+                        <Image
+                          src={link.icon}
+                          alt="logo"
+                          width={24}
+                          height={24}
+                        />
+                      )}
+
                       {link.label}
                     </Link>
                   </li>

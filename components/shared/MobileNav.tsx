@@ -14,13 +14,12 @@ const MobileNav = () => {
 
   return (
     <header className="header">
-      <Link href="/" className="flex items-center gap-2 md:py-2">
-        <Image
-          src="/assets/images/logo-text.svg"
-          alt="Mobile Nav logo"
-          width={180}
-          height={48}
-        />
+      <Link
+        href="/"
+        className="text-2xl text-dark-600 font-bold"
+        prefetch={false}
+      >
+        pixelWizard.AI
       </Link>
 
       <nav className="flex gap-2">
@@ -39,12 +38,9 @@ const MobileNav = () => {
             </SheetTrigger>
             <SheetContent className="sheet-content sm:w-64">
               <>
-                <Image
-                  src="/assets/images/logo-text.svg"
-                  alt="logo"
-                  width={152}
-                  height={23}
-                />
+                <div className="text-lg text-dark-600 font-bold">
+                  pixelWizard.AI
+                </div>
 
                 <ul className="header-nav_elements">
                   {navLinks.map((link) => {
@@ -53,29 +49,26 @@ const MobileNav = () => {
                     return (
                       <li
                         key={link.route}
-                        className={`${
-                          isActive && "gradient-text"
-                        } p-18 flex whitespace-nowrap text-dark-700`}
+                        className={`sidebar-nav_element group ${
+                          isActive
+                            ? "bg-purple-gradient text-white"
+                            : "text-gray-700"
+                        }`}
                       >
-                        <Link
-                          href={link.label}
-                          className="sidebar-link cursor-pointer"
-                        >
+                        <Link className="sidebar-link" href={link.route}>
                           {isActive ? (
                             <Image
                               src={link.iconWhite}
-                              alt="nav logo"
+                              alt="logo"
                               width={24}
                               height={24}
-                              className={`${isActive && "brightness-200"}`}
                             />
                           ) : (
                             <Image
                               src={link.icon}
-                              alt="nav logo"
+                              alt="logo"
                               width={24}
                               height={24}
-                              className={`${isActive && "brightness-200"}`}
                             />
                           )}
 

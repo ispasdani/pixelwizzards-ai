@@ -84,7 +84,7 @@
 }
 
 .root-container {
-  @apply mt-16 flex-1 overflow-auto py-8 lg:mt-0 lg:max-h-screen lg:py-10;
+  @apply mt-16 flex-1 overflow-auto pt-8 lg:mt-0 lg:max-h-screen lg:pt-10;
 }
 
 /* ========================================== TAILWIND STYLES */
@@ -224,11 +224,19 @@
 
   /* Home Page */
   .home {
-    @apply sm:flex-center hidden h-72 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 shadow-inner;
+    @apply sm:flex-center hidden h-52 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 shadow-inner;
+  }
+
+  .homeSecond {
+    @apply sm:flex-center hidden h-52 flex-col gap-4 rounded-[20px] border p-10 shadow-inner;
   }
 
   .home-heading {
     @apply h1-semibold max-w-[500px] flex-wrap text-center text-white shadow-sm;
+  }
+
+  .home-subheading {
+    @apply h1-semibold max-w-[500px] flex-wrap text-center text-dark-600 shadow-sm;
   }
 
   /* Credits Page */
@@ -302,7 +310,7 @@
 
   /* Navbar Component */
   .header {
-    @apply flex-between fixed h-16 w-full border-b-4 border-purple-100 bg-white p-5 lg:hidden;
+    @apply flex-between items-center fixed h-16 w-full border-b-4 border-purple-100 bg-white p-5 lg:hidden;
   }
 
   .header-nav_elements {
